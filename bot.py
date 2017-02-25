@@ -150,6 +150,12 @@ def status(author, message): #TODO
 def test(author, message): #TODO
 	member = discord.Member()
 	print(member)
+def help(author, message):
+	yield from client.send_message(message.channel, "Commands:\n"
+					"\n!greet"
+					"\n!snipe [username]"
+					"\n!choose [options, space seperated]"
+					"\n!youtube [url]")
 
 @client.event
 @asyncio.coroutine
@@ -157,6 +163,8 @@ def on_message(message):
 	author = message.author
 	if   message.content.startswith("!greet"):
 		yield from greet (author, message)
+	elif message.content.startswith("!help"):
+		yield from help  (author, message)
 	elif message.content.startswith("!snipe"):
 		yield from league(author, message)
 	elif message.content.startswith("!choose"):
